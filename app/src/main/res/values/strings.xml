@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">One Stop Grocery</string>
+    <string name="shipPayTextRes"><![CDATA[Shipping & Payment]]></string>
+    <string name="addressText">Shipping Address</string>
+    <string name="payTextRes">Payment Method</string>
+    <string name="priceText">Price: </string>
+    <string name="shippingText">Shipping: </string>
+    <string name="taxText">Tax: </string>
+    <string name="totPriceText">Total Price: </string>
+    <string name="confirmPayBtnText"><![CDATA[Confirm & Pay]]></string>
 </resources>
