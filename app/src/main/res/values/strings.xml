@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">One Stop Grocery</string>
+    <string name="txtSignUp">Sign Up</string>
+    <string name="btnCreateAcc">Create an Account</string>
+    <string name="btnSignGoogle">Sign Up With Google</string>
+    <string name="btnSignFB">Sign Up With Facebook</string>
+    <string name="txtAlreadyAcc">Already Have an Account?</string>
+    <string name="txtSignIn"><u>Sign In</u></string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Your Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign IN</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="txtSignAcc">Sign In to Your Account</string>
+    <string name="txtForgetPass"><u>Forget Your Password?</u></string>
+    <string name="txtCreateAccText">Create An Account</string>
+    <string name="txtCustName">Customer Name</string>
+    <string name="txtEmail">Your Email</string>
+    <string name="txtPass">Create a Password</string>
+    <string name="btnCreateAcc2">Create an Account</string>
+    <string name="txtAlreadyAcc2">Already Have an Account?</string>
+    <string name="txtSignIn2"><u>Sign In</u></string>
+    <string name="txtCustName2">Customer Name</string>
+    <string name="txtUserName">User Name</string>
+    <string name="txtPostAdd">Postal Address</string>
+    <string name="imgLogo">Logo</string>
+    <string name="imgUserPhoto" />
+    <string name="title_activity_password">PasswordActivity</string>
+    <string name="txtResetPass">Enter your email and request password reset.</string>
+    <string name="txtEmailPassReset">Enter Your Email Here</string>
+    <string name="btnPassReset">Password Reset</string>
+    <string name="txtUserEmail">Email Address</string>
+    <string name="btnSignOut">Sign Out</string>
+    <string name="facebook_app_id">449909566329231</string>
+    <string name="fb_login_protocol_scheme">fb449909566329231</string>
 </resources>
