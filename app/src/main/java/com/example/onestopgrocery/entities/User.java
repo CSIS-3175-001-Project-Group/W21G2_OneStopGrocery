@@ -5,10 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys = {"id", "email", "login"}, tableName = "users")
+@Entity(primaryKeys = {"email", "login"}, tableName = "users")
 public class User {
-    public int id;
-
     @ColumnInfo(name = "full_name")
     public String fullName;
     @NonNull

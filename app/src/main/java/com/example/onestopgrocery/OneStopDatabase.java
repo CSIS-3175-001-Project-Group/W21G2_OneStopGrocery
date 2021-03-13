@@ -15,16 +15,15 @@ abstract class AppDatabase extends RoomDatabase {
 }
 
 public class OneStopDatabase {
-    private static final String DB_NAME = "onestop";
+    public static final String DB_NAME = "onestop";
     private static AppDatabase instance;
 
     private OneStopDatabase() {}
 
     public static AppDatabase getInstance(Context context) {
-        if (instance != null) {
-            return instance;
-        } else {
-            return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
+        if (instance == null) {
+            instance = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();
         }
+        return instance;
     }
 }
