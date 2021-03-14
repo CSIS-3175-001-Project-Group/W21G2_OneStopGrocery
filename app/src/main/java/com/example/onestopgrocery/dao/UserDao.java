@@ -21,7 +21,7 @@ public interface UserDao {
     User findByLogin(String userLogin);
 
     @Insert
-    void insertUser(User user);
+    void insert(User user);
 
     @Delete
     void delete(User user);

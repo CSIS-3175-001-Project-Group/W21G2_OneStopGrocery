@@ -59,25 +59,25 @@ public class DatabaseInstrumentalTest {
 
     @Test
     public void insertOneUserAndGetOne() {
-        db.userDao().insertUser(testUser1);
+        db.userDao().insert(testUser1);
         List<User> userList = db.userDao().getAll();
         assertEquals(userList.size(), 1);
     }
 
     @Test
     public void insertThreeAndGetThree() {
-        db.userDao().insertUser(testUser1);
-        db.userDao().insertUser(testUser2);
-        db.userDao().insertUser(testUser3);
+        db.userDao().insert(testUser1);
+        db.userDao().insert(testUser2);
+        db.userDao().insert(testUser3);
         List<User> userList = db.userDao().getAll();
         assertEquals(userList.size(), 3);
     }
 
     @Test
     public void getInsertedUserByEmail() {
-        db.userDao().insertUser(testUser1);
-        db.userDao().insertUser(testUser2);
-        db.userDao().insertUser(testUser3);
+        db.userDao().insert(testUser1);
+        db.userDao().insert(testUser2);
+        db.userDao().insert(testUser3);
         User user = db.userDao().findByEmail(testUser1.email);
         assertNotEquals(user, null);
         assertEquals(user.email, testUser1.email);
@@ -85,9 +85,9 @@ public class DatabaseInstrumentalTest {
 
     @Test
     public void getInsertedUserByLogin() {
-        db.userDao().insertUser(testUser1);
-        db.userDao().insertUser(testUser2);
-        db.userDao().insertUser(testUser3);
+        db.userDao().insert(testUser1);
+        db.userDao().insert(testUser2);
+        db.userDao().insert(testUser3);
         User user = db.userDao().findByLogin(testUser1.login);
         assertNotEquals(user, null);
         assertEquals(user.login, testUser1.login);
@@ -95,9 +95,9 @@ public class DatabaseInstrumentalTest {
 
     @Test
     public void deleteUser() {
-        db.userDao().insertUser(testUser1);
-        db.userDao().insertUser(testUser2);
-        db.userDao().insertUser(testUser3);
+        db.userDao().insert(testUser1);
+        db.userDao().insert(testUser2);
+        db.userDao().insert(testUser3);
         db.userDao().delete(testUser2);
         User user = db.userDao().findByEmail(testUser2.email);
         assertEquals(user, null);
