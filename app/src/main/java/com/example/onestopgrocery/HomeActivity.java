@@ -3,7 +3,11 @@ package com.example.onestopgrocery;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -32,6 +36,14 @@ public class HomeActivity extends AppCompatActivity {
         productsGridView.setHorizontalSpacing(8);
         productsGridView.setVerticalSpacing(8);
 
+        productsGridView.setOnItemClickListener(
+                (AdapterView<?> parent, View view, int position, long id) -> {
+
+                    Intent productPageIntent = new Intent(HomeActivity.this, ProductActivity.class);
+                    productPageIntent.putExtra("ProductInfo", productList.get(position));
+                    startActivity(productPageIntent);
+                }
+        );
     }
 
     private void addProduct() {

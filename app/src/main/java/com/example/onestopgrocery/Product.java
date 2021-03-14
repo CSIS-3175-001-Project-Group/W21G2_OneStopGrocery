@@ -1,6 +1,8 @@
 package com.example.onestopgrocery;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     int prodId;
     String prodName;
     String prodDesc;
