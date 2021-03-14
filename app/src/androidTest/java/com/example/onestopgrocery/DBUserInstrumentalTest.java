@@ -17,12 +17,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Database Instrumented test, which will execute on an Android device.
+ * Database User related Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class DatabaseInstrumentalTest {
+public class DBUserInstrumentalTest {
 
     Context appContext;
     AppDatabase db;
@@ -39,6 +39,7 @@ public class DatabaseInstrumentalTest {
         user.city = "test" + index + "City";
         user.country = "test" + index + "Country";
         user.fullName = "test" + index + " user";
+        user.phone = "236110220" + index;
         user.logoResource = 123456;
         return user;
     }
@@ -66,18 +67,14 @@ public class DatabaseInstrumentalTest {
 
     @Test
     public void insertThreeAndGetThree() {
-        db.userDao().insert(testUser1);
-        db.userDao().insert(testUser2);
-        db.userDao().insert(testUser3);
+        db.userDao().insert(testUser1, testUser2, testUser3);
         List<User> userList = db.userDao().getAll();
         assertEquals(userList.size(), 3);
     }
 
     @Test
     public void getInsertedUserByEmail() {
-        db.userDao().insert(testUser1);
-        db.userDao().insert(testUser2);
-        db.userDao().insert(testUser3);
+        db.userDao().insert(testUser1, testUser2, testUser3);
         User user = db.userDao().findByEmail(testUser1.email);
         assertNotEquals(user, null);
         assertEquals(user.email, testUser1.email);
@@ -85,21 +82,28 @@ public class DatabaseInstrumentalTest {
 
     @Test
     public void getInsertedUserByLogin() {
-        db.userDao().insert(testUser1);
-        db.userDao().insert(testUser2);
-        db.userDao().insert(testUser3);
+        db.userDao().insert(testUser1, testUser2, testUser3);
         User user = db.userDao().findByLogin(testUser1.login);
         assertNotEquals(user, null);
         assertEquals(user.login, testUser1.login);
     }
 
     @Test
-    public void deleteUser() {
+    public void updateExistedUser() {
         db.userDao().insert(testUser1);
-        db.userDao().insert(testUser2);
-        db.userDao().insert(testUser3);
-        db.userDao().delete(testUser2);
+        User newUser = db.userDao().findByEmail(testUser1.email);
+        newUser.country = "Vietnam";
+        db.userDao().update(newUser);
+        User updatedUser = db.userDao().findByEmail(newUser.email);
+        assertEquals(updatedUser.country, newUser.country);
+    }
+
+    @Test
+    public void deleteUser() {
+        db.userDao().insert(testUser1, testUser2, testUser3);
         User user = db.userDao().findByEmail(testUser2.email);
-        assertEquals(user, null);
+        db.userDao().delete(user);
+        User deletedUser = db.userDao().findByEmail(testUser2.email);
+        assertNull(deletedUser);
     }
 }

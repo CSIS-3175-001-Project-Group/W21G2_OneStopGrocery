@@ -4,6 +4,8 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.example.onestopgrocery.entities.User;
 
@@ -20,12 +22,19 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE login = :userLogin")
     User findByLogin(String userLogin);
 
+    @Transaction
+    @Update
+    void update(User... users);
+
+    @Transaction
     @Insert
-    void insert(User user);
+    void insert(User... users);
 
+    @Transaction
     @Delete
-    void delete(User user);
+    void delete(User... users);
 
+    @Transaction
     @Query("DELETE FROM users")
     void deleteAll();
 }
