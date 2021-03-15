@@ -13,19 +13,19 @@ import java.util.List;
 
 public class CartAndOrders {
     @Embedded
-    User user;
+    public User user;
     @Relation(
             entity = Cart.class,
             parentColumn = "id",
             entityColumn = "user_id"
     )
-    Cart cart;
+    public Cart cart;
     @Relation(
             entity = Order.class,
             parentColumn = "id",
             entityColumn = "user_id"
     )
-    List<Order> orderList;
+    public List<Order> orderList;
 
     public CartAndOrders() {
         this.orderList = new ArrayList<>();
