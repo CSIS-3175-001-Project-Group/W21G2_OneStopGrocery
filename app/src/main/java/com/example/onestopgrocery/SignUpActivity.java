@@ -26,6 +26,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.facebook.login.widget.LoginButton;
 
+import java.util.Arrays;
+
 public class SignUpActivity extends AppCompatActivity {
 
     Button Account, Facebook;
@@ -43,7 +45,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
         Button Account = findViewById(R.id.btnCreateAcc);
         Button Google = findViewById(R.id.btnSignGoogle);
         //Button Facebook = findViewById(R.id.btnSignFB);
@@ -51,12 +52,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         Button account = findViewById(R.id.btnCreateAcc);
 
-        account.setOnClickListener(new View.OnClickListener()
-
-        {
+        account.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick (View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(SignUpActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
@@ -85,50 +84,15 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-    }
-
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            Intent intent = new Intent (SignUpActivity.this, UserProfileActivity.class );
-        } catch (ApiException e) {
-
-            Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
-
-        }
-
-
         callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+        loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -146,5 +110,39 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        //Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
+            startActivity(intent);
+        } catch (ApiException e) {
+
+            Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
+
+        }
+
+
+    }
 
 }

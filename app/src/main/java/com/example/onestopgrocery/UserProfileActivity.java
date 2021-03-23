@@ -58,9 +58,6 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
