@@ -18,7 +18,7 @@ public class Product {
     @ColumnInfo(name = "logo_resource")
     public Integer logoResource;
 
-    public Product(String name, String description, Float rating, Double price, Float weight, Integer quantity, Integer logoResource) {
+    public Product(String name, String description, Float rating, Double price, Float weight, Integer logoResource) {
         this.name = name;
         this.description = description;
         this.rating = rating;

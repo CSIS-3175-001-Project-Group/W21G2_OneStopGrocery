@@ -9,10 +9,11 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(indices = {@Index(value = { "user_id" }, unique = true)}, tableName = "carts")
+@Entity(indices = {@Index(value = { "id" })}, tableName = "carts")
 public class Cart {
     @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     public Long id;
     @NonNull
     @ColumnInfo(name = "user_id")
@@ -28,9 +29,8 @@ public class Cart {
     public Date createdDatetime;
 
 
-    public Cart(@NonNull Long id, @NonNull Long userId, @NonNull Long product_id,
+    public Cart(@NonNull Long userId, @NonNull Long product_id,
                 @NonNull Integer quantity, @NonNull Date createdDatetime) {
-        this.id = id;
         this.userId = userId;
         this.product_id = product_id;
         this.quantity = quantity;

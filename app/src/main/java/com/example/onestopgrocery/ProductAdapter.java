@@ -8,10 +8,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.lifecycle.LiveData;
+
+import com.example.onestopgrocery.dao.ProductDao;
+import com.example.onestopgrocery.entities.Product;
+
 import java.util.List;
 
 public class ProductAdapter extends BaseAdapter {
-    List<Product> productList;
+    private List<Product> productList;
 
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
@@ -29,7 +34,7 @@ public class ProductAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return productList.get(position).getProdId();
+        return productList.get(position).getId();
     }
 
     @Override
@@ -44,9 +49,9 @@ public class ProductAdapter extends BaseAdapter {
         ImageView prodImgView = convertView.findViewById(R.id.prodImgView);
         TextView prodDescTxtView = convertView.findViewById(R.id.prodDescTextView);
 
-        prodNameTxtView.setText(productList.get(position).getProdName());
-        prodImgView.setImageResource(productList.get(position).getProdImg());
-        prodDescTxtView.setText(productList.get(position).getProdDesc());
+        prodNameTxtView.setText(productList.get(position).getName());
+        prodImgView.setImageResource(productList.get(position).getLogoResource());
+        prodDescTxtView.setText(productList.get(position).getDescription());
 
         return convertView;
     }

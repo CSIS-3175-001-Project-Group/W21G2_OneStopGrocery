@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                UserDao userDao = OneStopDatabase.getInstance(v.getContext()).userDao();
+                UserDao userDao = AppDatabase.getDatabase(getApplication()).userDao();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

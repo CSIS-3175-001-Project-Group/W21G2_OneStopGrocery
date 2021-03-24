@@ -68,10 +68,10 @@ abstract class AppDatabase extends RoomDatabase {
                 productDao.deleteAll();
 
                 Product product = new Product("Test Prod 1", "Test Desc 1",
-                        4.4f, 9.99, 1.23f, 1, R.drawable.placeholder);
+                        4.4f, 9.99, 1.23f, R.drawable.placeholder);
                 productDao.insert(product);
                 product = new Product("Test Prod 2", "Test Desc 2",
-                        2.4f, 4.99, 0.5f, 1, R.drawable.placeholder);
+                        2.4f, 4.99, 0.5f, R.drawable.placeholder);
                 productDao.insert(product);
             });
         }
