@@ -1,5 +1,6 @@
 package com.example.onestopgrocery.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -14,13 +15,16 @@ import java.util.List;
 @Dao
 public interface ProductDao {
     @Query("SELECT * FROM products")
-    List<Product> getAll();
+    List<Product> getAllProducts();
 
     @Query("SELECT * FROM products WHERE name = :productName")
     Product findByName(String productName);
 
     @Query("SELECT * FROM products WHERE rating = :rating")
     List<Product> findByRating(Float rating);
+
+    @Query("SELECT * FROM products WHERE id = :id")
+    Product findById(Long id);
 
     @Transaction
     @Update

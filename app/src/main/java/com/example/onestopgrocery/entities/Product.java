@@ -1,10 +1,10 @@
 package com.example.onestopgrocery.entities;
 
-import androidx.annotation.NonNull;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
 
 @Entity(tableName = "products")
 public class Product {
@@ -15,17 +15,43 @@ public class Product {
     public Float rating;
     public Double price;
     public Float weight;
-    public Integer quantity;
     @ColumnInfo(name = "logo_resource")
     public Integer logoResource;
 
-    public Product(String name, String description, Float rating, Double price, Float weight, Integer quantity, Integer logoResource) {
+    public Product(String name, String description, Float rating, Double price, Float weight, Integer logoResource) {
         this.name = name;
         this.description = description;
         this.rating = rating;
         this.price = price;
         this.weight = weight;
-        this.quantity = quantity;
         this.logoResource = logoResource;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Float getWeight() {
+        return weight;
+    }
+
+    public Integer getLogoResource() {
+        return logoResource;
     }
 }

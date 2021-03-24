@@ -37,4 +37,8 @@ public class User {
     public Integer logoResource;
     public String country;
     public String city;
+
+    public Long getId() {
+        return id;
+    }
 }

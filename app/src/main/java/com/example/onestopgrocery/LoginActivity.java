@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         handler = new Handler();
 
-        db = OneStopDatabase.getInstance(this);
+        db = AppDatabase.getDatabase(getApplication());
 
         infoDialog = new AlertDialog.Builder(this).create();
 
