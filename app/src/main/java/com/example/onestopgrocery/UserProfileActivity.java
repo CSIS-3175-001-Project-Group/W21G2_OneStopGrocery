@@ -1,56 +1,48 @@
 package com.example.onestopgrocery;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.onestopgrocery.entities.User;
+import com.example.onestopgrocery.helpers.Settings;
+
+import static com.example.onestopgrocery.helpers.Settings.getLoggedUserData;
 
 public class UserProfileActivity extends AppCompatActivity {
-
-    GoogleSignInClient mGoogleSignInClient;
-    ImageView imageView;
-    TextView name, email, id;
-    Button signout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         ImageView imageView = findViewById(R.id.imgUserPhoto);
-        TextView name =  findViewById(R.id.txtCustName3);
-        TextView email = findViewById(R.id.txtCustName3);
-        TextView id = findViewById(R.id.txtCustName3);
+        TextView name =  findViewById(R.id.txtInfoUserName);
+        TextView email = findViewById(R.id.txtInfoUserEmail);
+        TextView id = findViewById(R.id.txtInfoUserLogin);
         Button signOut = findViewById(R.id.btnSignOut);
+
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     // ...
                     case R.id.btnSignOut:
-                        signOut();
+                        Settings.signOut(view.getContext(), new Settings.OnSignOff() {
+                            @Override
+                            public void onSignOffComplete() {
+                                Intent goSign = new Intent(UserProfileActivity.this, SignUpActivity.class);
+                                goSign.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                goSign.putExtra("toast_msg", "Sign out Successfully");
+                                startActivity(goSign);
+                            }
+                        });
                         break;
                     // ...
                 }
@@ -58,28 +50,17 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+        User user = getLoggedUserData(this);
 
-            name.setText(personName);
-            email.setText(personEmail);
-            id.setText(personId);
-
+        if (user != null) {
+            name.setText(user.fullName);
+            email.setText(user.email);
+            id.setText(user.login);
+        } else {
+            AlertDialog errorDialog = new AlertDialog.Builder(this).create();
+            errorDialog.setTitle("Error");
+            errorDialog.setMessage("Can't find user data!");
+            errorDialog.show();
         }
-    }
-    private void signOut() {
-
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(UserProfileActivity.this,"Signed out successfully",Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                });
     }
 }
