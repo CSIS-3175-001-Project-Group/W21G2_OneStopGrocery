@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.onestopgrocery.dao.UserDao;
 import com.example.onestopgrocery.entities.User;
+import com.example.onestopgrocery.helpers.Settings;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -82,6 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
                             userDao.insert(newUser);
 
                             Intent goHome = new Intent(v.getContext(), HomeActivity.class);
+                            goHome.putExtra(Settings.USER_LOGGED_KEY, true);
+                            goHome.putExtra(Settings.USER_INFO, String.format("%s|%s|%s", newUser.login, newUser.fullName, newUser.email));
                             goHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(goHome);
                         }

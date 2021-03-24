@@ -42,4 +42,5 @@
     <string name="facebook_app_id">449909566329231</string>
     <string name="fb_login_protocol_scheme">fb449909566329231</string>
     <string name="txtHomeTitleText">Welcome Back</string>
+    <string name="action_menu_settings">Settings</string>
 </resources>

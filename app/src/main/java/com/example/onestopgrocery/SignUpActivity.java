@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -51,6 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
         TextView Login = findViewById(R.id.txtSignIn);
 
         Button account = findViewById(R.id.btnCreateAcc);
+
+        if (getIntent().hasExtra("toast_msg")) {
+            String msg = getIntent().getStringExtra("toast_msg");
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }
 
         account.setOnClickListener(new View.OnClickListener() {
 
@@ -144,5 +150,4 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-
 }
