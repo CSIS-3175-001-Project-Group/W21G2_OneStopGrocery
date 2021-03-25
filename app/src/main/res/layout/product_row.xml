@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="com.example.onestopgrocery.entities.Product" />
+        
+        <variable
+            name="groceryProductInterface"
+            type="com.example.onestopgrocery.adapters.GroceryProductAdapter.GroceryProductInterface" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> groceryProductInterface.onItemClick(product)}" >
+
+        <ImageView
+            android:id="@+id/productImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/placeholder"
+            android:productImage="@{product.getLogoResource}"/>
+
+        <TextView
+            android:id="@+id/productNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{product.getName}"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{String.valueOf(product.getPrice) + `$`}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to Cart"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+    </LinearLayout>
+</layout>
