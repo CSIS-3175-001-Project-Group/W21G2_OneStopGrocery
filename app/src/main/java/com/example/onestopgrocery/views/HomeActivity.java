@@ -1,34 +1,18 @@
 package com.example.onestopgrocery.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 
-
-import com.example.onestopgrocery.AppDatabase;
-import com.example.onestopgrocery.ProductActivity;
-import com.example.onestopgrocery.ProductAdapter;
 import com.example.onestopgrocery.R;
-import com.example.onestopgrocery.UserProfileActivity;
 import com.example.onestopgrocery.helpers.Settings;
-
-import java.util.List;
-
-import com.example.onestopgrocery.dao.ProductDao;
-import com.example.onestopgrocery.entities.Product;
 
 
 public class HomeActivity extends AppCompatActivity {
