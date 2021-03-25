@@ -10,3 +10,4 @@ Preliminary parts implementation responsibilities:
 **Zito Relova (Gonzalo)** - Implementation of general functionality, including UI, application logic, and architecture<br/>
 **Stan Biryukov** - Database ER design and implementation (includes init database, import stored in file data, CRUD operations) and local storage for settings implementation<br/>
 **Mir Imran Elahi (Anick)** - Designs, implementation of UI part (connecting to functional part)
+
