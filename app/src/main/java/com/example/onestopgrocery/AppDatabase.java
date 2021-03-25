@@ -28,9 +28,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = { User.class, UserPayment.class, Product.class, Cart.class,
-        Order.class, Payment.class, PaymentType.class }, version = 1)
+        Order.class, Payment.class, PaymentType.class }, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
-abstract class AppDatabase extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
+
     public abstract UserDao userDao();
     public abstract ProductDao productDao();
     public abstract PaymentTypeDao paymentTypeDao();
@@ -43,12 +44,12 @@ abstract class AppDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "word_database")
+                            AppDatabase.class, "one_stop_database")
                             .addCallback(sRoomDatabaseCallback)
                             .allowMainThreadQueries()
                             .build();
@@ -71,7 +72,13 @@ abstract class AppDatabase extends RoomDatabase {
                         4.4f, 9.99, 1.23f, R.drawable.placeholder);
                 productDao.insert(product);
                 product = new Product("Test Prod 2", "Test Desc 2",
-                        2.4f, 4.99, 0.5f, R.drawable.placeholder);
+                        2.4f, 4.99, 0.5f, R.drawable.placeholder2);
+                productDao.insert(product);
+                product = new Product("Test Prod 3", "Test Desc 3",
+                        3.8f, 19.99, 5.5f, R.drawable.placeholder2);
+                productDao.insert(product);
+                product = new Product("Test Prod 4", "Test Desc 4",
+                        1.8f, 15.99, 3.5f, R.drawable.placeholder);
                 productDao.insert(product);
             });
         }
