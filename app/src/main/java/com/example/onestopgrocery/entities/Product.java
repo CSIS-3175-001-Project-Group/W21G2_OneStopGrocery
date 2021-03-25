@@ -1,9 +1,18 @@
 package com.example.onestopgrocery.entities;
 
 
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.bumptech.glide.Glide;
+
+import java.util.Objects;
 
 
 @Entity(tableName = "products")
@@ -53,5 +62,36 @@ public class Product {
 
     public Integer getLogoResource() {
         return logoResource;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return getId().equals(product.getId()) &&
+                getName().equals(product.getName()) &&
+                getDescription().equals(product.getDescription()) &&
+                getRating().equals(product.getRating()) &&
+                getPrice().equals(product.getPrice()) &&
+                getWeight().equals(product.getWeight()) &&
+                getLogoResource().equals(product.getLogoResource());
+    }
+
+    public static DiffUtil.ItemCallback<Product> itemCallback = new DiffUtil.ItemCallback<Product>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
+
+    @BindingAdapter("android:productImage")
+    public static void loadImage(ImageView imageView, Integer image) {
+        Glide.with(imageView).load(image).fitCenter().into(imageView);
     }
 }
