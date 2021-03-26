@@ -92,6 +92,10 @@ public class Cart {
         return createdDatetime;
     }
 
+    public void setQuantity(@NonNull Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public static DiffUtil.ItemCallback<Cart> getItemCallback() {
         return itemCallback;
     }

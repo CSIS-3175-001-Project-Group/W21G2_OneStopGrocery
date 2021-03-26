@@ -31,6 +31,19 @@ public class CartRepository {
         }
 
         List<Cart> cartList = new ArrayList<>(mutableCart.getValue());
+        for (Cart cart: cartList) {
+            if (cart.getProduct_id().equals(product.getId())) {
+                if (cart.getQuantity() == 5) {
+                    return false;
+                }
+                int index = cartList.indexOf(cart);
+                cart.setQuantity(cart.getQuantity() + 1);
+                cartList.set(index, cart);
+                mutableCart.setValue(cartList);
+                return true;
+            }
+        }
+
         Cart cart = new Cart(Long.valueOf(1), product.getId(), product.getName(),
                 product.getPrice(), product.getLogoResource(), 1, new Date());
         cartList.add(cart);
