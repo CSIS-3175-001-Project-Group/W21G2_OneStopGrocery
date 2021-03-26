@@ -4,19 +4,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.onestopgrocery.dao.UserDao;
 import com.example.onestopgrocery.entities.User;
 import com.example.onestopgrocery.helpers.Settings;
+import com.example.onestopgrocery.views.HomeActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 

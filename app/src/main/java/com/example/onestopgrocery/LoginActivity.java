@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.example.onestopgrocery.entities.User;
 import com.example.onestopgrocery.helpers.Settings;
-
-import org.w3c.dom.Text;
+import com.example.onestopgrocery.views.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
