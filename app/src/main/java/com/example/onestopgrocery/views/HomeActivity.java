@@ -6,20 +6,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 import com.example.onestopgrocery.R;
+import com.example.onestopgrocery.UserProfileActivity;
 import com.example.onestopgrocery.helpers.Settings;
 
 
 public class HomeActivity extends AppCompatActivity {
-//    Toolbar toolbar;
     NavController navController;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupActionBarWithNavController(this, navController);
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
+
         if (getIntent().hasExtra(Settings.USER_LOGGED_KEY)) {
             try {
                 boolean userLoggedIn = getIntent().getBooleanExtra(Settings.USER_LOGGED_KEY, true);
@@ -64,6 +61,12 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent goSettings = new Intent(this, UserProfileActivity.class);
+                startActivity(goSettings);
+                return true;
+        }
         return NavigationUI.onNavDestinationSelected(item, navController) ||
         super.onOptionsItemSelected(item);
     }

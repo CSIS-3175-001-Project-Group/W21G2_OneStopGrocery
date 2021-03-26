@@ -20,6 +20,11 @@
         <action
             android:id="@+id/action_productCatalogFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_productCatalogFragment_to_userProfileActivity"
+            app:destination="@id/userProfileActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -49,4 +54,9 @@
             android:id="@+id/action_orderFragment_to_productCatalogFragment"
             app:destination="@id/productCatalogFragment" />
     </fragment>
+    <activity
+        android:id="@+id/userProfileActivity"
+        android:name="com.example.onestopgrocery.UserProfileActivity"
+        android:label="activity_user_profile"
+        tools:layout="@layout/activity_user_profile" />
 </navigation>
