@@ -68,6 +68,9 @@ public class ProductCatalogFragment extends Fragment
 
     @Override
     public void addItem(Product product) {
+        Log.d(TAG, "Adding item: " + product.getName());
+        boolean productAdded = oneStopViewModel.addProductToCart(product);
+        Log.d(TAG, "Item " + product.getName() + " added to cart");
 
     }
 

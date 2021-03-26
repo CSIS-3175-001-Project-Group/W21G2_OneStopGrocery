@@ -50,6 +50,7 @@
     <string name="fragmentCartHeader">Your Cart</string>
     <string name="fragmentOrderHeader">Your Order</string>
     <string name="checkoutButtonText">Proceed to Checkout</string>
+    <string name="textViewQuantityText">Qty</string>
     <string-array name="quantitySpinnerText">
         <item>"1"</item>
         <item>"2"</item>

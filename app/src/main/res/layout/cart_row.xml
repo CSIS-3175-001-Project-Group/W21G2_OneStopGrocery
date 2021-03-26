@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:productImage="@{cart.product.logoResource}"
+            android:productImage="@{cart.productLogoResource}"
             />
 
 
@@ -34,16 +34,16 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/textViewQuantity"
             app:layout_constraintStart_toEndOf="@+id/productImageView"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{cart.product.name}" />
+            android:text="@{cart.product_name}" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qty"
+            android:text="@string/textViewQuantityText"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/productNameTextView"
@@ -55,14 +55,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewQuantity"
+            app:layout_constraintStart_toEndOf="@+id/textViewQuantity"
+            app:layout_constraintTop_toTopOf="@+id/textViewQuantity"
             android:entries="@array/quantitySpinnerText"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:setVal="@{cart.quantity}"
-            />
-
+            android:setVal="@{cart.quantity}" />
 
         <ImageButton
             android:id="@+id/deleteProductButton"
@@ -87,8 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@{String.valueOf(cart.product.price * cart.quantity)}" />
-
+            android:text="@{String.valueOf(cart.product_price * cart.quantity)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,7 +35,7 @@ public class GroceryProductAdapter extends ListAdapter<Product, GroceryProductAd
     public void onBindViewHolder(@NonNull GroceryViewHolder holder, int position) {
         Product product = getItem(position);
         holder.productRowBinding.setProduct(product);
-
+        holder.productRowBinding.executePendingBindings();
     }
 
     class GroceryViewHolder extends RecyclerView.ViewHolder {

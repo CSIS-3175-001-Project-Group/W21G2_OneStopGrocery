@@ -7,7 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.onestopgrocery.entities.Cart;
 import com.example.onestopgrocery.entities.Product;
+import com.example.onestopgrocery.repositories.CartRepository;
 import com.example.onestopgrocery.repositories.GroceryRepository;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class OneStopViewModel extends AndroidViewModel {
 
     GroceryRepository groceryRepository;
+    CartRepository cartRepository = new CartRepository();
     MutableLiveData<Product> mutableProduct = new MutableLiveData<>();
 
     public OneStopViewModel(Application application) {
@@ -33,5 +36,11 @@ public class OneStopViewModel extends AndroidViewModel {
 
     public LiveData<Product> getProduct() {
         return mutableProduct;
+    }
+
+    public LiveData<List<Cart>> getCart() { return cartRepository.getCart(); }
+
+    public boolean addProductToCart(Product product) {
+        return cartRepository.addProductToCart(product);
     }
 }
