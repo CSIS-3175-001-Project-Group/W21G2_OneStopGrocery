@@ -55,6 +55,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             AppDatabase.class, "one_stop_database")
                             .addCallback(sRoomDatabaseCallback)
                             .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

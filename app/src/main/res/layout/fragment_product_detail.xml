@@ -8,6 +8,7 @@
         <variable
             name="oneStopViewModel"
             type="com.example.onestopgrocery.viewmodels.OneStopViewModel" />
+
     </data>
 
     <ScrollView
@@ -73,7 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description"
+                android:text="@string/productDescText"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
             <TextView
@@ -89,7 +90,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quantity"
+                android:text="@string/productQtyText"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
             <Spinner
@@ -107,7 +108,8 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Add to cart"
+                android:onClick="@{() -> oneStopViewModel.addProductToCart(oneStopViewModel.product)}"
+                android:text="@string/addToCartText"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
         </LinearLayout>
 

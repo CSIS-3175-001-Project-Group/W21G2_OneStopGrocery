@@ -26,7 +26,6 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/placeholder"
             android:productImage="@{product.getLogoResource}"/>
 
         <TextView
@@ -47,11 +46,13 @@
 
         <Button
             android:id="@+id/addToCartButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to Cart"
             android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            style="@style/Widget.MaterialComponents.Button.TextButton" />
+            android:onClick="@{() -> groceryProductInterface.addItem(product)}"
+            android:text="@string/addToCartText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
     </LinearLayout>
 </layout>
