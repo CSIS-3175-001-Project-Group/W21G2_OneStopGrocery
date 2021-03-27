@@ -2,23 +2,33 @@ package com.example.onestopgrocery.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 import com.example.onestopgrocery.R;
 import com.example.onestopgrocery.UserProfileActivity;
+import com.example.onestopgrocery.entities.Cart;
 import com.example.onestopgrocery.helpers.Settings;
+import com.example.onestopgrocery.viewmodels.OneStopViewModel;
+
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static final String TAG = "HomeActivity";
     NavController navController;
+    OneStopViewModel oneStopViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +37,13 @@ public class HomeActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupActionBarWithNavController(this, navController);
+        oneStopViewModel = new ViewModelProvider(this).get(OneStopViewModel.class);
+        oneStopViewModel.getCart().observe(this, new Observer<List<Cart>>() {
+            @Override
+            public void onChanged(List<Cart> carts) {
+                Log.d(TAG, "Cart changed " + carts.size());
+            }
+        });
 
         if (getIntent().hasExtra(Settings.USER_LOGGED_KEY)) {
             try {

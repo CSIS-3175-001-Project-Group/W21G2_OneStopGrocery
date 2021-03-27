@@ -8,6 +8,7 @@
         <variable
             name="oneStopViewModel"
             type="com.example.onestopgrocery.viewmodels.OneStopViewModel" />
+
     </data>
 
     <ScrollView
@@ -108,7 +109,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Add to cart"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:onClick="@{() -> oneStopViewModel.addProductToCart(oneStopViewModel.product)}"/>
         </LinearLayout>
 
     </ScrollView>
