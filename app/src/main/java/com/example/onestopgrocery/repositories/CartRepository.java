@@ -13,6 +13,7 @@ import java.util.List;
 public class CartRepository {
 
     private MutableLiveData<List<Cart>> mutableCart = new MutableLiveData<>();
+    private MutableLiveData<Double> mutableTotalPrice = new MutableLiveData<>();
 
     public LiveData<List<Cart>> getCart() {
         if (mutableCart.getValue() == null) {
@@ -23,6 +24,7 @@ public class CartRepository {
 
     public void initCart() {
         mutableCart.setValue(new ArrayList<Cart>());
+        calculateCartTotal();
     }
 
     public boolean addProductToCart(Product product) {
@@ -40,6 +42,7 @@ public class CartRepository {
                 cart.setQuantity(cart.getQuantity() + 1);
                 cartList.set(index, cart);
                 mutableCart.setValue(cartList);
+                calculateCartTotal();
                 return true;
             }
         }
@@ -48,6 +51,7 @@ public class CartRepository {
                 product.getPrice(), product.getLogoResource(), 1, new Date());
         cartList.add(cart);
         mutableCart.setValue(cartList);
+        calculateCartTotal();
         return true;
     }
 
@@ -59,6 +63,7 @@ public class CartRepository {
         List<Cart> cartList = new ArrayList<>(mutableCart.getValue());
         cartList.remove(cart);
         mutableCart.setValue(cartList);
+        calculateCartTotal();
     }
 
     public void changeProductQuantity(Cart cart, int quantity) {
@@ -72,5 +77,25 @@ public class CartRepository {
                 quantity, cart.getCreatedDatetime());
         cartList.set(cartList.indexOf(cart), updatedProduct);
         mutableCart.setValue(cartList);
+        calculateCartTotal();
+    }
+
+    private void calculateCartTotal() {
+        if (mutableCart.getValue() == null) {
+            return;
+        }
+        double total = 0.0;
+        List<Cart> cartList = mutableCart.getValue();
+        for (Cart cart: cartList) {
+            total += cart.get_product_price() * cart.getQuantity();
+        }
+        mutableTotalPrice.setValue(total);
+    }
+
+    public LiveData<Double> getTotalPrice() {
+        if (mutableTotalPrice.getValue() == null) {
+            mutableTotalPrice.setValue(0.0);
+        }
+        return mutableTotalPrice;
     }
 }

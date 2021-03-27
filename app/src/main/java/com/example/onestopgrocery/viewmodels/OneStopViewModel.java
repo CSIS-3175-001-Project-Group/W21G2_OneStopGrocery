@@ -51,4 +51,8 @@ public class OneStopViewModel extends AndroidViewModel {
     public void changeProductQuantity(Cart cart, int quantity) {
         cartRepository.changeProductQuantity(cart, quantity);
     }
+
+    public LiveData<Double> getTotalPrice() {
+        return cartRepository.getTotalPrice();
+    }
 }
