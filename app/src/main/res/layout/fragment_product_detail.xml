@@ -59,7 +59,7 @@
                 android:layout_height="4dp" />
 
             <RatingBar
-                android:id="@+id/ratingBarProduct"
+                android:id="@+id/rating"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

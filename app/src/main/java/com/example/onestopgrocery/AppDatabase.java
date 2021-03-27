@@ -1,6 +1,7 @@
 package com.example.onestopgrocery;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -23,6 +24,8 @@ import com.example.onestopgrocery.entities.Product;
 import com.example.onestopgrocery.entities.User;
 import com.example.onestopgrocery.entities.UserPayment;
 import com.example.onestopgrocery.entities.utils.Converters;
+import com.example.onestopgrocery.initdata.PaymentTypeData;
+import com.example.onestopgrocery.initdata.ProductData;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -66,21 +69,18 @@ public abstract class AppDatabase extends RoomDatabase {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                ProductDao productDao = INSTANCE.productDao();
-                productDao.deleteAll();
+                INSTANCE.paymentTypeDao().deleteAll();
+                PaymentTypeData paymentTypeList = new PaymentTypeData();
+                for (PaymentType paymentType : paymentTypeList.getData()) {
+                    INSTANCE.paymentTypeDao().insert(paymentType);
+                }
 
-                Product product = new Product("Test Prod 1", "Test Desc 1",
-                        4.4f, 9.99, 1.23f, R.drawable.placeholder);
-                productDao.insert(product);
-                product = new Product("Test Prod 2", "Test Desc 2",
-                        2.4f, 4.99, 0.5f, R.drawable.placeholder);
-                productDao.insert(product);
-                product = new Product("Test Prod 3", "Test Desc 3",
-                        3.8f, 19.99, 5.5f, R.drawable.placeholder);
-                productDao.insert(product);
-                product = new Product("Test Prod 4", "Test Desc 4",
-                        1.8f, 15.99, 3.5f, R.drawable.placeholder);
-                productDao.insert(product);
+                INSTANCE.productDao().deleteAll();
+                ProductData productData = new ProductData();
+                productData.init();
+                for (Product product : productData.getData()) {
+                    INSTANCE.productDao().insert(product);
+                }
             });
         }
     };
