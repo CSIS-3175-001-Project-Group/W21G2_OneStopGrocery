@@ -67,19 +67,19 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 ProductDao productDao = INSTANCE.productDao();
                 productDao.deleteAll();
-
-                Product product = new Product("Test Prod 1", "Test Desc 1",
-                        4.4f, 9.99, 1.23f, R.drawable.placeholder);
-                productDao.insert(product);
-                product = new Product("Test Prod 2", "Test Desc 2",
-                        2.4f, 4.99, 0.5f, R.drawable.placeholder2);
-                productDao.insert(product);
-                product = new Product("Test Prod 3", "Test Desc 3",
-                        3.8f, 19.99, 5.5f, R.drawable.placeholder2);
-                productDao.insert(product);
-                product = new Product("Test Prod 4", "Test Desc 4",
-                        1.8f, 15.99, 3.5f, R.drawable.placeholder);
-                productDao.insert(product);
+//
+//                Product product = new Product("Test Prod 1", "Test Desc 1",
+//                        4.4f, 9.99, 1.23f, R.drawable.placeholder);
+//                productDao.insert(product);
+//                product = new Product("Test Prod 2", "Test Desc 2",
+//                        2.4f, 4.99, 0.5f, R.drawable.placeholder2);
+//                productDao.insert(product);
+//                product = new Product("Test Prod 3", "Test Desc 3",
+//                        3.8f, 19.99, 5.5f, R.drawable.placeholder2);
+//                productDao.insert(product);
+//                product = new Product("Test Prod 4", "Test Desc 4",
+//                        1.8f, 15.99, 3.5f, R.drawable.placeholder);
+//                productDao.insert(product);
             });
         }
     };

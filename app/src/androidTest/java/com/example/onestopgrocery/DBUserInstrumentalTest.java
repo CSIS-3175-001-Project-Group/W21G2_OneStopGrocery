@@ -47,7 +47,7 @@ public class DBUserInstrumentalTest {
     @Before
     public void init() {
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        db = OneStopDatabase.getInstance(appContext);
+        db = AppDatabase.getDatabase(appContext);
         testUser1 = getInitTestUser("1");
         testUser2 = getInitTestUser("2");
         testUser3 = getInitTestUser("3");

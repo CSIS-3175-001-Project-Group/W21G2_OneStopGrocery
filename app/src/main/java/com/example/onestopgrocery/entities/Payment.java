@@ -10,15 +10,6 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(indices = {@Index(value = { "card_number" }, unique = true)},
-        foreignKeys = {
-            @ForeignKey(
-                entity = UserPayment.class,
-                parentColumns = "payment_id",
-                childColumns = "id",
-                onDelete = ForeignKey.CASCADE,
-                onUpdate = ForeignKey.NO_ACTION
-                )
-            },
         tableName = "payments")
 public class Payment {
     @PrimaryKey(autoGenerate = true)
