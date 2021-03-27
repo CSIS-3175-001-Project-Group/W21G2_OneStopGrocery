@@ -47,4 +47,8 @@ public class OneStopViewModel extends AndroidViewModel {
     public void removeProductFromCart(Cart cart) {
         cartRepository.removeProductFromCart(cart);
     }
+
+    public void changeProductQuantity(Cart cart, int quantity) {
+        cartRepository.changeProductQuantity(cart, quantity);
+    }
 }

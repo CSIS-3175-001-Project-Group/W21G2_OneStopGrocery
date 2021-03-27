@@ -65,4 +65,9 @@ public class CartFragment extends Fragment implements CartAdapter.CartInterface 
         Log.d(TAG, "Deleting item " + cart.getProduct_name());
         oneStopViewModel.removeProductFromCart(cart);
     }
+
+    @Override
+    public void changeQuantity(Cart cart, int quantity) {
+        oneStopViewModel.changeProductQuantity(cart, quantity);
+    }
 }
