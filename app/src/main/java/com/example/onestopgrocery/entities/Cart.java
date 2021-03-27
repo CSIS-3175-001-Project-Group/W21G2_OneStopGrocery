@@ -105,7 +105,7 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return getId().equals(cart.getId()) &&
+        return
                 getUserId().equals(cart.getUserId()) &&
                 getProduct_id().equals(cart.getProduct_id()) &&
                 getProduct_name().equals(cart.getProduct_name()) &&

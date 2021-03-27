@@ -20,6 +20,7 @@ import com.example.onestopgrocery.databinding.FragmentCartBinding;
 import com.example.onestopgrocery.entities.Cart;
 import com.example.onestopgrocery.viewmodels.OneStopViewModel;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -56,13 +57,15 @@ public class CartFragment extends Fragment implements CartAdapter.CartInterface 
             @Override
             public void onChanged(List<Cart> carts) {
                 cartAdapter.submitList(carts);
+                fragmentCartBinding.checkoutButton.setEnabled(carts.size() > 0);
             }
         });
 
         oneStopViewModel.getTotalPrice().observe(getViewLifecycleOwner(), new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
-                fragmentCartBinding.orderTotalTextView.setText("Total: $ " + aDouble.toString());
+                DecimalFormat df = new DecimalFormat("$##.##");
+                fragmentCartBinding.orderTotalTextView.setText("Total: " + df.format(aDouble));
             }
         });
     }
