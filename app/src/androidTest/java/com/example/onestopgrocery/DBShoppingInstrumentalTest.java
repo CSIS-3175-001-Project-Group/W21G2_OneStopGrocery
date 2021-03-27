@@ -58,7 +58,7 @@ public class DBShoppingInstrumentalTest {
     @Before
     public void init() {
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        db = OneStopDatabase.getInstance(appContext);
+        db = AppDatabase.getDatabase(appContext);
 
         testUser1 = getInitTestUser("1");
         testUser2 = getInitTestUser("2");
@@ -75,8 +75,8 @@ public class DBShoppingInstrumentalTest {
         testPayment1 = new Payment("1111222233334444", "000",
                 "Dummy User",  3, 21);
 
-        testProduct1 = new Product("Apples", "Red apples from Mexico, 1 bag, 1kg", 3f, 4.30d, 1f, 10, 0);
-        testProduct2 = new Product("Cherry Tomatoes", "Tomatoes from Peru, 0.5kg", 4.2f, 2.15d, 0.5f, 21, 0);
+        testProduct1 = new Product("Apples", "Red apples from Mexico, 1 bag, 1kg", 3f, 4.30d, 1f, 10);
+        testProduct2 = new Product("Cherry Tomatoes", "Tomatoes from Peru, 0.5kg", 4.2f, 2.15d, 0.5f, 21);
     }
 
     @After
@@ -96,7 +96,7 @@ public class DBShoppingInstrumentalTest {
     public void insertMultipleProducts() {
         db.productDao().insert(testProduct1);
         db.productDao().insert(testProduct2);
-        List<Product> productList = db.productDao().getAll();
+        List<Product> productList = db.productDao().getAllProducts();
         assertEquals(productList.size(), 2);
     }
 

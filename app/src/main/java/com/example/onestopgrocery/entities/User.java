@@ -11,15 +11,6 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
 @Entity(indices = {@Index(value = { "email", "login" }, unique = true)},
-//        foreignKeys = {
-//            @ForeignKey(
-//                entity = UserPayment.class,
-//                parentColumns = "user_id",
-//                childColumns = "id",
-//                onDelete = ForeignKey.CASCADE,
-//                onUpdate = ForeignKey.NO_ACTION
-//            )
-//        },
         tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)
