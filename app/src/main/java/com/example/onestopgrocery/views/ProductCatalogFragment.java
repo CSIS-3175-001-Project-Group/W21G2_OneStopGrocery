@@ -22,8 +22,7 @@ import com.example.onestopgrocery.adapters.GroceryProductAdapter;
 import com.example.onestopgrocery.databinding.FragmentProductBinding;
 import com.example.onestopgrocery.entities.Product;
 import com.example.onestopgrocery.viewmodels.OneStopViewModel;
-
-
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class ProductCatalogFragment extends Fragment
@@ -71,6 +70,17 @@ public class ProductCatalogFragment extends Fragment
         Log.d(TAG, "Adding item: " + product.getName());
         boolean productAdded = oneStopViewModel.addProductToCart(product);
         Log.d(TAG, "Item " + product.getName() + " added to cart");
+        if (productAdded) {
+            Snackbar.make(requireView(), product.getName() + " added to cart.", Snackbar.LENGTH_LONG)
+                    .setAction("Checkout", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            navController.navigate(R.id.action_productCatalogFragment_to_cartFragment);
+                        }
+                    }).show();
+        } else {
+            Snackbar.make(requireView(),"Product limit reached.", Snackbar.LENGTH_LONG);
+        }
 
     }
 

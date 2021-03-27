@@ -109,6 +109,7 @@ public class Cart {
                 getUserId().equals(cart.getUserId()) &&
                 getProduct_id().equals(cart.getProduct_id()) &&
                 getProduct_name().equals(cart.getProduct_name()) &&
+                getProductLogoResource().equals(cart.getProductLogoResource()) &&
                 get_product_price().equals(cart.get_product_price()) &&
                 getQuantity().equals(cart.getQuantity()) &&
                 getCreatedDatetime().equals(cart.getCreatedDatetime());

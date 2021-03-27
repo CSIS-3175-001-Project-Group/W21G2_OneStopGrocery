@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +14,10 @@ import com.example.onestopgrocery.entities.Cart;
 
 public class CartAdapter extends ListAdapter<Cart, CartAdapter.CartViewHolder> {
 
-    public CartAdapter() {
+    private CartInterface cartInterface;
+    public CartAdapter(CartInterface cartInterface) {
         super(Cart.itemCallback);
+        this.cartInterface = cartInterface;
     }
 
     @NonNull
@@ -41,6 +42,17 @@ public class CartAdapter extends ListAdapter<Cart, CartAdapter.CartViewHolder> {
         public CartViewHolder(@NonNull CartRowBinding cartRowBinding) {
             super(cartRowBinding.getRoot());
             this.cartRowBinding = cartRowBinding;
+
+            cartRowBinding.deleteProductButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cartInterface.deleteProduct(getItem(getAdapterPosition()));
+                }
+            });
         }
+    }
+
+    public interface CartInterface {
+        void deleteProduct(Cart cart);
     }
 }

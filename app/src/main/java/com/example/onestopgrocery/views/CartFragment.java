@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import com.example.onestopgrocery.viewmodels.OneStopViewModel;
 import java.util.List;
 
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CartAdapter.CartInterface {
 
     private static final String TAG = "CartFragment";
     OneStopViewModel oneStopViewModel;
@@ -45,7 +46,7 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        CartAdapter cartAdapter = new CartAdapter();
+        final CartAdapter cartAdapter = new CartAdapter(this);
         fragmentCartBinding.cartRecyclerView.setAdapter(cartAdapter);
         fragmentCartBinding.cartRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(),
                 DividerItemDecoration.VERTICAL));
@@ -57,5 +58,11 @@ public class CartFragment extends Fragment {
                 cartAdapter.submitList(carts);
             }
         });
+    }
+
+    @Override
+    public void deleteProduct(Cart cart) {
+        Log.d(TAG, "Deleting item " + cart.getProduct_name());
+        oneStopViewModel.removeProductFromCart(cart);
     }
 }
