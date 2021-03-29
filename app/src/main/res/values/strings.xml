@@ -54,11 +54,37 @@
     <string name="productDescText">Description</string>
     <string name="productQtyText">Quantity</string>
     <string name="addToCartText">Add to Cart</string>
+    <string name="shipDetailsHeaderTxt">Enter Shipping Details</string>
+    <string name="shipDetailsNameTxt">Customer Name</string>
+    <string name="nameHintTxt">Name</string>
+    <string name="addLineOneTxt">Address Line 1</string>
+    <string name="addLineTwoTxt">Address Line 2</string>
+    <string name="cityText">City</string>
+    <string name="provinceTxt">Province</string>
+    <string name="postalCodeTxt">Postal Code</string>
+    <string name="reviewOrderButtonTxt">Review Order</string>
+    <string name="orderConfirmText">Your order has been confirmed!\nThank you for shopping at</string>
+    <string name="continueButtonText">Continue Shopping</string>
     <string-array name="quantitySpinnerText">
         <item>"1"</item>
         <item>"2"</item>
         <item>"3"</item>
         <item>"4"</item>
         <item>"5"</item>
+    </string-array>
+    <string-array name="spinnerProvinceText">
+        <item>"AB"</item>
+        <item>"BC"</item>
+        <item>"MB"</item>
+        <item>"NB"</item>
+        <item>"NL"</item>
+        <item>"NT"</item>
+        <item>"NS"</item>
+        <item>"NU"</item>
+        <item>"ON"</item>
+        <item>"PE"</item>
+        <item>"QC"</item>
+        <item>"SK"</item>
+        <item>"YT"</item>
     </string-array>
 </resources>

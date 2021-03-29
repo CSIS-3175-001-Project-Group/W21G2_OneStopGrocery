@@ -16,18 +16,22 @@ public interface OrderDao {
     @Query("SELECT * FROM orders")
     List<Order> getAll();
 
-    @Query("SELECT * FROM orders WHERE status = :orderStatus")
-    List<Order> getByStatus(Short orderStatus);
-
     @Query("SELECT * FROM orders WHERE user_id = :userId")
     List<Order> getByUserId(Long userId);
 
-    @Query("SELECT * FROM orders WHERE user_id = :userId AND status = :orderStatus")
-    List<Order> getByUserAndStatus(Long userId, Short orderStatus);
+    @Transaction
+    @Query("UPDATE orders SET shipping_address = :shippingAddress WHERE user_id = :userId")
+    void updateShippingAdd(Long userId, String shippingAddress);
 
     @Transaction
-    @Update
-    void update(Order... orders);
+    @Query("UPDATE orders SET product_total = :productTotal, tax_amount = :productTotal * 0.05, " +
+            "shipping_price = CASE WHEN :productTotal >= 50.0 THEN 0.0 ELSE 5.00 END " +
+            ", total_price = :productTotal + tax_amount + shipping_price WHERE user_id = :userId")
+    void updateProductTotal(Long userId, Double productTotal);
+
+    @Transaction
+    @Query("UPDATE orders SET total_price = product_total + tax_amount + shipping_price")
+    void updateTotalPrice();
 
     @Transaction
     @Insert

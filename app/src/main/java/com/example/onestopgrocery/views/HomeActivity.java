@@ -13,8 +13,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
+import com.example.onestopgrocery.CheckoutActivity;
 import com.example.onestopgrocery.R;
 import com.example.onestopgrocery.UserProfileActivity;
 import com.example.onestopgrocery.entities.Cart;
@@ -86,5 +91,35 @@ public class HomeActivity extends AppCompatActivity {
         }
         return NavigationUI.onNavDestinationSelected(item, navController) ||
         super.onOptionsItemSelected(item);
+    }
+
+    public void buttonClick(View view) {
+        switch(view.getId()) {
+            case R.id.reviewOrderButton:
+                EditText addLineOne = findViewById(R.id.editTextAddLineOne);
+                EditText addLineTwo = findViewById(R.id.editTextAddLineTwo);
+                EditText city = findViewById(R.id.editTextCity);
+                Spinner province = findViewById(R.id.spinnerProvince);
+                EditText postalCode = findViewById(R.id.editTextPostalCode);
+                TextView orderTotal = findViewById(R.id.orderTotalTextView);
+                try {
+                    String shippingAddress = addLineOne.getText().toString() + " "
+                            + addLineTwo.getText().toString() + " "
+                            + city.getText().toString() + " "
+                            + province.getSelectedItem().toString() + " "
+                            + postalCode.getText().toString();
+                    oneStopViewModel.updateShippingAdd(Long.valueOf(1), shippingAddress);
+
+                    Log.d(TAG, "Updated order address successfully");
+
+                } catch (Exception e) {
+                    Log.d(TAG, "Error occurred updating order " + e.getMessage());
+                }
+                Intent myIntent = new Intent();
+                myIntent.setClassName("com.example.onestopgrocery",
+                        "com.example.onestopgrocery.CheckoutActivity");
+                startActivity(myIntent);
+                break;
+        }
     }
 }
