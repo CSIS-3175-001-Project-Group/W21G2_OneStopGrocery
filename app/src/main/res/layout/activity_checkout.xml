@@ -42,28 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/addressTextView" />
 
     <TextView
-        android:id="@+id/payTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/payTextRes"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressDetailsTextView" />
-
-    <TextView
-        android:id="@+id/payDetailsTextView"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payTextView" />
-
-    <TextView
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +51,7 @@
         android:text="@string/priceText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payDetailsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/addressDetailsTextView" />
 
     <TextView
         android:id="@+id/priceValTextView"
@@ -84,7 +62,7 @@
         android:layout_marginRight="64dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payDetailsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/addressDetailsTextView" />
 
     <TextView
         android:id="@+id/shippingTextView"

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.onestopgrocery.entities.Order;
 import com.example.onestopgrocery.entities.Payment;
 import com.example.onestopgrocery.viewmodels.OneStopViewModel;
+import com.example.onestopgrocery.views.HomeActivity;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -63,17 +64,18 @@ public class CheckoutActivity extends AppCompatActivity {
         oneStopViewModel = new ViewModelProvider(this).get(OneStopViewModel.class);
         List<Order> currentOrder = oneStopViewModel.fetchOrder(Long.valueOf(1));
         Order singleOrder = currentOrder.get(0);
+        Double totalPrice = singleOrder.getTotalPrice();
 
         addressDetailsTextView.setText(singleOrder.getShippingAddress());
         priceValTextView.setText(df.format(singleOrder.getProductTotal()));
         shippingValTextView.setText(df.format(singleOrder.getShippingPrice()));
         taxValTextView.setText(df.format(singleOrder.getTaxAmount()));
-        totalPriceValTextView.setText(df.format(singleOrder.getTotalPrice()));
+        totalPriceValTextView.setText(df.format(totalPrice));
 
         confirmPayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payWithPayPal();
+                payWithPayPal(totalPrice);
             }
         });
         configPayPal();
@@ -89,19 +91,18 @@ public class CheckoutActivity extends AppCompatActivity {
 
     }
 
-    private void payWithPayPal() {
+    private void payWithPayPal(Double totalPrice) {
 
         Intent intent = new Intent(this, PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, payPalConfig);
         startService(intent);
 
-        cartPayment = new PayPalPayment(new BigDecimal(String.valueOf("9.99")), "CAD",
+        cartPayment = new PayPalPayment(new BigDecimal(String.valueOf(totalPrice)), "CAD",
                 "Complete Payment", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent paymentIntent = new Intent(this, PaymentActivity.class);
         paymentIntent.putExtra(PaymentActivity.EXTRA_PAYMENT, cartPayment);
         paymentIntent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, payPalConfig);
         startActivityForResult(paymentIntent, REQ_CODE_PAYMENT);
-
     };
 
     @Override
@@ -112,6 +113,8 @@ public class CheckoutActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 PaymentConfirmation confirm = data
                         .getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                Intent backToHome = new Intent(this, HomeActivity.class);
+                startActivity(backToHome);
                 if (confirm != null) {
                     try {
                         System.out.println(confirm.toJSONObject()
