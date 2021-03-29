@@ -26,5 +26,4 @@
         android:text="5"
         android:textColor="@color/white" />
 
-
 </FrameLayout>
