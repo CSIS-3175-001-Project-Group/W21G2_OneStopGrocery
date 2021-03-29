@@ -32,6 +32,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
+    private int cartQuantity = 0;
     NavController navController;
     OneStopViewModel oneStopViewModel;
 
@@ -47,6 +48,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Cart> carts) {
                 Log.d(TAG, "Cart changed " + carts.size());
+                int quantity = 0;
+                for (Cart cart: carts) {
+                    quantity += cart.getQuantity();
+                }
+                cartQuantity = quantity;
+                invalidateOptionsMenu();
             }
         });
 
@@ -78,6 +85,17 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.cartFragment);
+        View actionView = menuItem.getActionView();
+        TextView cartShapeTextView = actionView.findViewById(R.id.cart_shape_text_view);
+
+        cartShapeTextView.setText(String.valueOf(cartQuantity));
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
         return true;
     }
 
@@ -101,7 +119,6 @@ public class HomeActivity extends AppCompatActivity {
                 EditText city = findViewById(R.id.editTextCity);
                 Spinner province = findViewById(R.id.spinnerProvince);
                 EditText postalCode = findViewById(R.id.editTextPostalCode);
-                TextView orderTotal = findViewById(R.id.orderTotalTextView);
                 try {
                     String shippingAddress = addLineOne.getText().toString() + " "
                             + addLineTwo.getText().toString() + " "
