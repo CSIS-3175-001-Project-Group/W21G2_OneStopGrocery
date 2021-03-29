@@ -63,6 +63,8 @@
     <string name="provinceTxt">Province</string>
     <string name="postalCodeTxt">Postal Code</string>
     <string name="reviewOrderButtonTxt">Review Order</string>
+    <string name="orderConfirmText">Your order has been confirmed!\nThank you for shopping at</string>
+    <string name="continueButtonText">Continue Shopping</string>
     <string-array name="quantitySpinnerText">
         <item>"1"</item>
         <item>"2"</item>

@@ -18,6 +18,7 @@ import com.example.onestopgrocery.entities.Order;
 import com.example.onestopgrocery.entities.Payment;
 import com.example.onestopgrocery.viewmodels.OneStopViewModel;
 import com.example.onestopgrocery.views.HomeActivity;
+import com.example.onestopgrocery.views.OrderConfirmationActivity;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -113,8 +114,8 @@ public class CheckoutActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 PaymentConfirmation confirm = data
                         .getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-                Intent backToHome = new Intent(this, HomeActivity.class);
-                startActivity(backToHome);
+                Intent confirmOrder= new Intent(this, OrderConfirmationActivity.class);
+                startActivity(confirmOrder);
                 if (confirm != null) {
                     try {
                         System.out.println(confirm.toJSONObject()
