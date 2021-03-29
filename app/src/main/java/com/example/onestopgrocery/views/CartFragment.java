@@ -24,8 +24,6 @@ import com.example.onestopgrocery.viewmodels.OneStopViewModel;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.regex.Pattern;
-
 
 public class CartFragment extends Fragment implements CartAdapter.CartInterface {
 
