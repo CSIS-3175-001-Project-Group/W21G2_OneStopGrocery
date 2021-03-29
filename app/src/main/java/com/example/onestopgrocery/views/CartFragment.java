@@ -24,6 +24,7 @@ import com.example.onestopgrocery.viewmodels.OneStopViewModel;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class CartFragment extends Fragment implements CartAdapter.CartInterface {
@@ -69,6 +70,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartInterface 
             @Override
             public void onChanged(Double aDouble) {
                 DecimalFormat df = new DecimalFormat("$##.##");
+                oneStopViewModel.saveOrder(aDouble);
                 fragmentCartBinding.orderTotalTextView.setText("Total: " + df.format(aDouble));
             }
         });
