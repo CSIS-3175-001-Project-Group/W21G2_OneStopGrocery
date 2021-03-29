@@ -90,6 +90,8 @@ public class HomeActivity extends AppCompatActivity {
         TextView cartShapeTextView = actionView.findViewById(R.id.cart_shape_text_view);
 
         cartShapeTextView.setText(String.valueOf(cartQuantity));
+        cartShapeTextView.setVisibility(cartQuantity == 0 ? View.GONE : View.VISIBLE);
+
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
