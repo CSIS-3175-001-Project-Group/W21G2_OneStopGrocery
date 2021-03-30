@@ -1,15 +1,26 @@
 # W21G2_OneStopGrocery
-Group 2 Project for CSIS-3175 Winter 2021
+## Group 2 Project for CSIS-3175 Winter 2021
 
 Android project assignment for a simple grocery shop application implementation.
 
-Project Wireframes - https://xd.adobe.com/view/424f3967-dced-4e1c-bc9b-d7255472b368-171c/
+**Project Wireframes** - https://xd.adobe.com/view/424f3967-dced-4e1c-bc9b-d7255472b368-171c/
 
-Preliminary parts implementation responsibilities:
+**Project Contributors**
 
-**Zito Relova (Gonzalo)** - Implementation of general functionality, including UI, application logic, and architecture<br/>
-**Stan Biryukov** - Database ER design and implementation (includes init database, import stored in file data, CRUD operations) and local storage for settings implementation<br/>
-**Mir Imran Elahi (Anick)** - Designs, implementation of UI part (connecting to functional part)
+**Zito Relova (Gonzalo) (65% contribution)**
+- Implementation of all main application activities including product retrieval, product catalog, product details and descriptions, cart, order, checkout, and order confirmation.
+- Implementation of PayPal integration in checkout activity
+
+
+**Stan Biryukov (20% contribution)**
+- Implementation of the database along with entities and data access objects
+- Connection of sign up and login activities to the database and saving user data
+- Preparation and loading of product data to the database
+
+**Mir Imran Elahi (15% contribution)**
+- Implementation of sign up and login activities with Google and Facebook login integration
+- Design of project wireframes and project logo
+
 
 
 
