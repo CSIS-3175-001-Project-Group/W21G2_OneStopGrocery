@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.onestopgrocery.entities.User;
 import com.example.onestopgrocery.helpers.Settings;
+import com.example.onestopgrocery.views.HomeActivity;
 
 import static com.example.onestopgrocery.helpers.Settings.getLoggedUserData;
 
@@ -27,6 +28,7 @@ public class UserProfileActivity extends AppCompatActivity {
         TextView email = findViewById(R.id.txtInfoUserEmail);
         TextView id = findViewById(R.id.txtInfoUserLogin);
         Button signOut = findViewById(R.id.btnSignOut);
+        Button homeback = findViewById(R.id.btnBackHome);
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +50,16 @@ public class UserProfileActivity extends AppCompatActivity {
                 }
 
             }
+        });
+
+        homeback.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+
         });
 
         User user = getLoggedUserData(this);
